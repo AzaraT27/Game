@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Guess the Word</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script th:inline="javascript">
+        window.onload = function checkGameState() {
+            var numberOfTriesRem = [[${triesLeft}]];
+            if (numberOfTriesRem <= 0) {
+                alert("Game Over! The game will now reload.");
+                setTimeout(function() {
+                    window.location.href = "/reload";
+                }, 2000); // 2 seconds delay for user to see the alert
+            }
+        }
+
+        function reloadGame() {
+            window.location.href = "/reload";
+        }
+    </script>
+</head>
+<body>
+    <img id="background-img" src="/images/image.png" alt="Background Image">
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body text-center">
+                <h1 class="card-title">Guess the Word</h1>
+                <h2 class="card-text" th:text="${wordtodisplay}">Show a random word</h2>
+                <h4 class="card-text" th:text="'Tries Left: ' + ${triesLeft}">Show number of tries here</h4>
+                <hr />
+                <button class="btn btn-primary float-right" onclick="reloadGame();">Reload</button>
+                <div class="mt-4">
+                    <form action="/game-home" method="GET">
+                        <div class="form-group">
+                            <label for="Guessletter">Guess a letter:</label>
+                            <input type="text" name="Guessletter" id="Guessletter" class="form-control" maxlength="1" required />
+                        </div>
+                        <button type="submit" class="btn btn-success">Try</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

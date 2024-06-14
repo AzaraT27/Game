@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>You Have Won!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script th:inline="javascript">
+        window.onload = function() {
+            setTimeout(function() {
+                window.location.href = "/reload";
+            }, 2000); // 2 seconds delay
+        }
+    </script>
+</head>
+<body>
+	<img id="background-img" src="/images/image.png" alt="Background Image">
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body text-center">
+                <h1 class="card-title">You Have Won!</h1>
+                <h4 class="card-text" th:text="${message}">You have won! Reloading the game...</h4>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
